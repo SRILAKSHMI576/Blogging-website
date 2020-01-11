@@ -22,7 +22,11 @@ mongoose
   });
 
 const userRouter = require("./routes/User");
+const postRouter = require("./routes/Post");
+const commentRouter = require("./routes/Comment");
 
 app.use("/users", userRouter);
+app.use("/posts", postRouter);
+app.use("/comments", commentRouter);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
