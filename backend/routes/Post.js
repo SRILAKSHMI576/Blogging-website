@@ -17,4 +17,17 @@ router.route("/").post((req, res) => {
     });
 });
 
+// to delete a exercise
+router.route("/:id").delete((req, res) => {
+  Post.findByIdAndDelete(req.params.id)
+    .then(doc => {
+      res.status(204);
+      console.log("del. successfully");
+      return res.json(doc);
+    })
+    .catch(err => {
+      res.status(400);
+      return res.send(err);
+    });
+});
 module.exports = router;
