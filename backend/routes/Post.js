@@ -2,20 +2,20 @@ const router = require("express").Router();
 let Post = require("../models/Post.model");
 
 //Create post
-router.route("/").post((req, res) => {
-  const body = req.body;
-  var myPost = new Post(body);
-  myPost
-    .save()
-    .then(doc => {
-      res.status(201);
-      return res.send(doc);
-    })
-    .catch(err => {
-      res.status(404);
-      return res.send(err);
-    });
-});
+// router.route("/").post((req, res) => {
+//   const body = req.body;
+//   var myPost = new Post(body);
+//   myPost
+//     .save()
+//     .then(doc => {
+//       res.status(201);
+//       return res.send(doc);
+//     })
+//     .catch(err => {
+//       res.status(404);
+//       return res.send(err);
+//     });
+// });
 
 // to delete a exercise
 router.route("/:id").delete((req, res) => {
@@ -60,6 +60,20 @@ router.route("/").get((req, res) => {
     .catch(err => {
       console.log("Response failed");
       return res.send(err);
+    });
+});
+
+router.route("/").post((req, res) => {
+  const body = req.body;
+  const result = body.likes;
+  var myLikes = new Post(result);
+  myLikes
+    .save()
+    .then(like => {
+      return res.send(like);
+    })
+    .catch(err => {
+      res.send(err);
     });
 });
 
