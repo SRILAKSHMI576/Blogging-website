@@ -49,4 +49,18 @@ router.route("/:id").put((req, res) => {
     })
     .catch(err => res.status(400).json("Error: " + err));
 });
+
+//Create an API for showing the blog posts
+router.route("/").get((req, res) => {
+  Post.find()
+    .then(doc => {
+      console.log("Response Resolved");
+      return res.send(doc);
+    })
+    .catch(err => {
+      console.log("Response failed");
+      return res.send(err);
+    });
+});
+
 module.exports = router;
